@@ -7,11 +7,12 @@ public interface CarService {
 
     ResponseEntity getAllCars();
 
-    void addCar(Car car);
+    ResponseEntity addCar(Car car);
 
     ResponseEntity deleteCar(Car car);
+    ResponseEntity deleteCar(Long id);
 
-    ResponseEntity deleteCarById(int id);
+    ResponseEntity getAllAvailableCars();
 
-
+    ResponseEntity updateCar(Car car);
 }
