@@ -22,6 +22,9 @@ public class Car {
     private String registrationNumber;
 
     @Column(nullable = false)
+    private  long price;
+
+    @Column(nullable = false)
     private boolean available;
 
 
@@ -76,6 +79,14 @@ public class Car {
         this.available = available;
     }
 
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -83,6 +94,7 @@ public class Car {
                 ", brand='" + brand + '\'' +
                 ", modell='" + modell + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
+                ", price=" + price +
                 ", available=" + available +
                 '}';
     }

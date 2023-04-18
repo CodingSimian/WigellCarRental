@@ -3,16 +3,20 @@ package ostrand.wigellcarrental.services;
 import org.springframework.http.ResponseEntity;
 import ostrand.wigellcarrental.entities.Car;
 
+import java.util.List;
+
 public interface CarService {
 
-    ResponseEntity getAllCars();
+    List<Car> getAllCars();
 
-    ResponseEntity addCar(Car car);
+    Car addCar(Car car);
 
-    ResponseEntity deleteCar(Car car);
-    ResponseEntity deleteCar(Long id);
+    void deleteCar(Car car);
 
-    ResponseEntity getAllAvailableCars();
 
-    ResponseEntity updateCar(Car car);
+    List<Car> getAllAvailableCars();
+
+    Car updateCar(Car car);
+
+
 }
