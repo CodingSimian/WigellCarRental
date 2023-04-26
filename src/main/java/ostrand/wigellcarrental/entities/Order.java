@@ -1,5 +1,7 @@
 package ostrand.wigellcarrental.entities;
 
+
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

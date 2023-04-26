@@ -10,6 +10,8 @@ import ostrand.wigellcarrental.repositories.CarRepository;
 import ostrand.wigellcarrental.repositories.OrderRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService{
@@ -56,7 +58,10 @@ public class CarServiceImpl implements CarService{
 
     @Override
     public Car updateCar(Car car) {
-        System.out.println(car.toString());
+        Optional<Car> databaseCar = carRepository.findById(car.getId());
+        if(databaseCar.isEmpty()){
+            throw new NoSuchElementException();
+        }
        return car = carRepository.save(car);
     }
 }
