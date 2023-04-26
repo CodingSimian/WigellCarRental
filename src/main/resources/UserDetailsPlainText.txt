@@ -1,0 +1,6 @@
+Greg@example.com   password: pass1231
+Keith@example.com  password: pass1232
+Sanna@example.com  password: pass1233
+Amanda@example.com password: pass1234
+Sam@example.com    password: pass1235
+Admin              password: pass1236

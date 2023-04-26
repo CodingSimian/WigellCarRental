@@ -1,14 +1,25 @@
 package ostrand.wigellcarrental.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ostrand.wigellcarrental.entities.Customer;
 import ostrand.wigellcarrental.repositories.CustomerRepository;
+import ostrand.wigellcarrental.security.AuthoritiesServiceImpl;
+import ostrand.wigellcarrental.security.UserServiceImpl;
 
 import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
+
+    @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
+    private AuthoritiesServiceImpl authoritiesService;
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -39,8 +50,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer addCustomer(Customer customerToBeAdded) {
+    public ResponseEntity<String> addCustomer(Customer customerToBeAdded) {
+        customerRepository.save(customerToBeAdded);
+        String password = userService.addNewUser(customerToBeAdded);
+        authoritiesService.addAuthority(customerToBeAdded.getUsername());
 
-        return customerRepository.save(customerToBeAdded);
+        return new ResponseEntity<>("Customer added,  username:"+ customerToBeAdded.getUsername() +"  Password:" + password + " Please save in a safe location", HttpStatus.CREATED);
     }
 }

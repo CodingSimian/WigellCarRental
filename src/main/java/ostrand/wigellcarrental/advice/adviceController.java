@@ -36,7 +36,7 @@ public class adviceController {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException(NoSuchElementException exc){
-        ErrorResponse response = new ErrorResponse(HttpStatus.NOT_FOUND.value(), "Not object found with id, Enter correct id:",getTimeStamp());
+        ErrorResponse response = new ErrorResponse(HttpStatus.NOT_FOUND.value(), "No object found with id, Enter correct id:",getTimeStamp());
         adviceLogger.error("Not object found with provied id");
         return new ResponseEntity<ErrorResponse>(response,HttpStatus.NOT_FOUND);
     }

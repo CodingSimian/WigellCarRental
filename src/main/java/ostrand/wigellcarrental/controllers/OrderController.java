@@ -1,7 +1,6 @@
 package ostrand.wigellcarrental.controllers;
 
 import org.apache.log4j.Logger;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +44,8 @@ public class OrderController {
 
     @DeleteMapping("/deleteorder")
     public ResponseEntity<String> deleteOrder(@RequestBody Order order){
+        // first cancels order to make car available
+        orderService.cancelOrder(order);
         orderService.deleteOrder(order);
         orderLogger.info("Admin deleted order");
         return new ResponseEntity<String>("Deleted order id:"+ order.getId(),HttpStatus.OK);

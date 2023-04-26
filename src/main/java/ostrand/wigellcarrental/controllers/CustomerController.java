@@ -24,11 +24,11 @@ private final CustomerServiceImpl customerService;
 
     @PostMapping("/addcustomer")
     public ResponseEntity addCustomer(@RequestBody Customer customer){
-        customerService.addCustomer(customer);
+         ResponseEntity respone = customerService.addCustomer(customer);
 
         // TODO Lägg till logger.fatal() meddelande i AdviceController och ErrorResponse
         customerLogger.info("Admin added customer");
-        return new ResponseEntity(HttpStatus.CREATED);
+        return respone;
     }
 
 

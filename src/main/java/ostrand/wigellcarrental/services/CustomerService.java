@@ -1,5 +1,6 @@
 package ostrand.wigellcarrental.services;
 
+import org.springframework.http.ResponseEntity;
 import ostrand.wigellcarrental.entities.Customer;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface CustomerService {
 
     public void updateCustomerById(Long id, Customer customerToBeUpdated);
 
-    public Customer addCustomer(Customer customerToBeAdded);
+    public ResponseEntity<String> addCustomer(Customer customerToBeAdded);
 }

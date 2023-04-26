@@ -19,7 +19,7 @@ public class Order {
     @Column(nullable = false)
     private boolean active;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Car car;
 
     @ManyToOne

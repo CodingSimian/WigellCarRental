@@ -1,6 +1,5 @@
 package ostrand.wigellcarrental.controllers;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,11 +21,12 @@ public class CarController {
     @GetMapping("/allcars")
     public ResponseEntity<List<Car>> getAllCars(){
         carLogger.info("Admin viewed all cars");
+
         return new ResponseEntity<List<Car>>(carService.getAllCars(), HttpStatus.OK);
     }
 
     @GetMapping("/cars")
-    public ResponseEntity<List<Car>> getAvaibleCars(){
+    public ResponseEntity<List<Car>> getAvailableCars(){
         carLogger.info("Customer viewed all available cars");
         return new ResponseEntity<List<Car>>(carService.getAllAvailableCars(),HttpStatus.OK);
     }
@@ -39,7 +39,6 @@ public class CarController {
 
     @DeleteMapping("/deletecar")
     public ResponseEntity<String> deleteCar(@RequestBody Car car){
-        System.out.println(car.toString());
         carService.deleteCar(car);
         carLogger.info("Admin deleted car with id of: " + car.getId());
         return  new ResponseEntity<>("Deleted Car with id:"+car.getId(),HttpStatus.OK);
